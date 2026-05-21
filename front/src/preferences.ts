@@ -10,6 +10,9 @@ interface WebAntdPreferencesExtension {
   tenantMode: 'multi' | 'single';
 }
 
+const publicAsset = (filename: string) =>
+  `${import.meta.env.BASE_URL}${filename}`;
+
 /**
  * @description 项目配置文件
  * 只需要覆盖项目中的一部分配置，不需要的配置不用覆盖，会自动使用默认配置
@@ -19,7 +22,7 @@ export const overridesPreferences = defineOverridesPreferences({
   // overrides
   app: {
     accessMode: 'backend',
-    defaultAvatar: '/rbac-avatar.svg',
+    defaultAvatar: publicAsset('rbac-avatar.svg'),
     defaultHomePath: '/dashboard',
     enableCheckUpdates: false,
     enableRefreshToken: true,
@@ -32,8 +35,8 @@ export const overridesPreferences = defineOverridesPreferences({
     date: '2026',
   },
   logo: {
-    source: '/rbac-logo.svg',
-    sourceDark: '/rbac-logo.svg',
+    source: publicAsset('rbac-logo.svg'),
+    sourceDark: publicAsset('rbac-logo.svg'),
   },
   widget: {
     languageToggle: true,
