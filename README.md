@@ -1,6 +1,6 @@
 # RBAC Admin Starter
 
-基于 **NestJS + Prisma + PostgreSQL + Vben Admin 5.x（front）** 的通用后台管理底座，提供登录认证、动态菜单、按钮权限、后端接口权限、用户/角色/菜单/部门/审计日志、顶部栏设置、中英文切换和通知中心等基础能力，适合在此基础上二次开发业务模块。
+基于 **NestJS + Prisma + PostgreSQL + Vben Admin 5.x（front）** 的通用后台管理底座，提供登录认证、动态菜单、按钮权限、后端接口权限、用户/角色/菜单/审计日志、顶部栏设置、中英文切换和通知中心等基础能力，适合在此基础上二次开发业务模块。
 
 扩展文档：
 
@@ -71,7 +71,7 @@ VITE_GLOB_API_URL=http://localhost:3000/api
 │   ├── src              # 后端模块源码
 │   └── test             # 后端基础测试
 ├── docs
-│   ├── GOAL.md          # 本项目原始需求文档
+│   ├── GOAL.md          # 无部门分支目标说明
 │   ├── PRODUCT.md       # 产品说明
 │   └── USER_MANUAL.md   # 使用手册
 ├── workspace
@@ -84,19 +84,19 @@ VITE_GLOB_API_URL=http://localhost:3000/api
 
 ## 常用命令
 
-| 命令                     | 用途                                 |
-| ------------------------ | ------------------------------------ |
-| `pnpm dev:api`           | 启动 NestJS 后端                     |
-| `pnpm dev:admin`         | 启动 `front` 前端                    |
-| `pnpm dev:rbac`          | 同时启动前后端                       |
-| `pnpm db:generate`       | 生成 Prisma Client                   |
-| `pnpm db:migrate`        | 执行 Prisma migration                |
-| `pnpm db:seed`           | 写入默认租户、部门、角色、菜单、用户 |
-| `pnpm rbac:init`         | 依次执行 generate、migrate、seed     |
-| `pnpm -F @rbac/api test` | 运行后端测试                         |
-| `pnpm -F @rbac/api lint` | 后端 TypeScript 检查                 |
-| `pnpm run check:rbac`    | 后端检查 + 测试 + 全仓类型检查       |
-| `pnpm run build:rbac`    | 构建后端和 `front` 前端              |
+| 命令                     | 用途                             |
+| ------------------------ | -------------------------------- |
+| `pnpm dev:api`           | 启动 NestJS 后端                 |
+| `pnpm dev:admin`         | 启动 `front` 前端                |
+| `pnpm dev:rbac`          | 同时启动前后端                   |
+| `pnpm db:generate`       | 生成 Prisma Client               |
+| `pnpm db:migrate`        | 执行 Prisma migration            |
+| `pnpm db:seed`           | 写入默认租户、角色、菜单、用户   |
+| `pnpm rbac:init`         | 依次执行 generate、migrate、seed |
+| `pnpm -F @rbac/api test` | 运行后端测试                     |
+| `pnpm -F @rbac/api lint` | 后端 TypeScript 检查             |
+| `pnpm run check:rbac`    | 后端检查 + 测试 + 全仓类型检查   |
+| `pnpm run build:rbac`    | 构建后端和 `front` 前端          |
 
 ## 权限模型说明
 

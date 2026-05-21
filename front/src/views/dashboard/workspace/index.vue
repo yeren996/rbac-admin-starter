@@ -29,7 +29,7 @@ const router = useRouter();
 const projectItems: WorkbenchProjectItem[] = [
   {
     color: '#2563eb',
-    content: '维护后台账号、状态、部门与角色绑定。',
+    content: '维护后台账号、状态与角色绑定。',
     date: '持续维护',
     group: '系统管理',
     icon: 'carbon:user-role',
@@ -53,15 +53,6 @@ const projectItems: WorkbenchProjectItem[] = [
     icon: 'carbon:menu',
     title: '菜单管理',
     url: '/system/menu',
-  },
-  {
-    color: '#8b5cf6',
-    content: '沉淀组织结构，为用户归属和数据隔离预留基础。',
-    date: '持续维护',
-    group: '组织架构',
-    icon: 'carbon:tree-view-alt',
-    title: '部门管理',
-    url: '/system/department',
   },
 ];
 
@@ -90,12 +81,6 @@ const quickNavItems: WorkbenchQuickNavItem[] = [
     icon: 'ion:layers-outline',
     title: '菜单',
     url: '/system/menu',
-  },
-  {
-    color: '#06b6d4',
-    icon: 'ion:git-network-outline',
-    title: '部门',
-    url: '/system/department',
   },
   {
     color: '#ef4444',
@@ -176,7 +161,7 @@ function navTo(nav: WorkbenchProjectItem | WorkbenchQuickNavItem) {
         早安，{{ userStore.userInfo?.realName }}，开始管理后台权限吧！
       </template>
       <template #description>
-        当前系统提供用户、角色、菜单、部门与审计日志等 RBAC 基础能力。
+        当前系统提供用户、角色、菜单与审计日志等 RBAC 基础能力。
       </template>
     </WorkbenchHeader>
 

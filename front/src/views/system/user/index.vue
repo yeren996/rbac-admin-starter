@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { DepartmentRow, RoleRow, UserRow } from '#/api';
+import type { RoleRow, UserRow } from '#/api';
 
 import { computed, onMounted, reactive, ref } from 'vue';
 
@@ -16,14 +16,12 @@ import {
   Select,
   Space,
   Table,
-  TreeSelect,
 } from 'ant-design-vue';
 
 import {
   assignUserRolesApi,
   createUserApi,
   deleteUserApi,
-  getDepartmentsApi,
   getRolesApi,
   getUsersApi,
   resetUserPasswordApi,
@@ -36,14 +34,12 @@ const loading = ref(false);
 const rows = ref<UserRow[]>([]);
 const total = ref(0);
 const roles = ref<RoleRow[]>([]);
-const departments = ref<DepartmentRow[]>([]);
 const query = reactive({
   page: 1,
   pageSize: 20,
   username: '',
   nickname: '',
   status: undefined as string | undefined,
-  deptId: undefined as string | undefined,
 });
 const modalOpen = ref(false);
 const editing = ref<null | UserRow>(null);
@@ -53,7 +49,6 @@ const form = reactive<Record<string, any>>({
   nickname: '',
   phone: '',
   email: '',
-  deptId: undefined,
   roleIds: [],
 });
 
@@ -63,18 +58,7 @@ const roleOptions = computed(() =>
     value: role.id,
   })),
 );
-function toTreeOptions(items: DepartmentRow[]): any[] {
-  return items.map((item) => ({
-    children: item.children ? toTreeOptions(item.children) : undefined,
-    title: item.name,
-    value: item.id,
-  }));
-}
-const deptTree = computed(() => toTreeOptions(departments.value));
 const canAssignRole = computed(() => hasPermission('system:user:assign-role'));
-const canListDepartments = computed(() =>
-  hasPermission('system:department:list'),
-);
 const canListRoles = computed(() => hasPermission('system:role:list'));
 
 async function load() {
@@ -92,9 +76,6 @@ async function loadMeta() {
     const roleData = await getRolesApi({ pageSize: 100 });
     roles.value = roleData.items;
   }
-  if (canListDepartments.value) {
-    departments.value = await getDepartmentsApi();
-  }
 }
 function openCreate() {
   editing.value = null;
@@ -104,7 +85,6 @@ function openCreate() {
     nickname: '',
     phone: '',
     email: '',
-    deptId: undefined,
     roleIds: [],
   });
   modalOpen.value = true;
@@ -183,14 +163,6 @@ onMounted(async () => {
               { label: '启用', value: 'ENABLED' },
               { label: '禁用', value: 'DISABLED' },
             ]"
-          />
-        </FormItem>
-        <FormItem v-if="canListDepartments" label="部门">
-          <TreeSelect
-            v-model:value="query.deptId"
-            allow-clear
-            style="width: 180px"
-            :tree-data="deptTree"
           />
         </FormItem>
         <Space>
@@ -279,13 +251,6 @@ onMounted(async () => {
         </FormItem>
         <FormItem label="手机"><Input v-model:value="form.phone" /></FormItem>
         <FormItem label="邮箱"><Input v-model:value="form.email" /></FormItem>
-        <FormItem v-if="canListDepartments" label="部门">
-          <TreeSelect
-            v-model:value="form.deptId"
-            allow-clear
-            :tree-data="deptTree"
-          />
-        </FormItem>
         <FormItem v-if="canAssignRole && canListRoles" label="角色">
           <Select
             v-model:value="form.roleIds"

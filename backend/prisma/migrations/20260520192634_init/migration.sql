@@ -28,7 +28,6 @@ CREATE TABLE "User" (
     "avatar" TEXT,
     "status" "Status" NOT NULL DEFAULT 'ENABLED',
     "isSuperAdmin" BOOLEAN NOT NULL DEFAULT false,
-    "deptId" TEXT,
     "lastLoginAt" TIMESTAMP(3),
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" TIMESTAMP(3) NOT NULL,
@@ -80,25 +79,6 @@ CREATE TABLE "Menu" (
 );
 
 -- CreateTable
-CREATE TABLE "Department" (
-    "id" TEXT NOT NULL,
-    "tenantId" TEXT NOT NULL,
-    "parentId" TEXT,
-    "name" TEXT NOT NULL,
-    "code" TEXT NOT NULL,
-    "sort" INTEGER NOT NULL DEFAULT 0,
-    "leader" TEXT,
-    "phone" TEXT,
-    "email" TEXT,
-    "status" "Status" NOT NULL DEFAULT 'ENABLED',
-    "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    "updatedAt" TIMESTAMP(3) NOT NULL,
-    "deletedAt" TIMESTAMP(3),
-
-    CONSTRAINT "Department_pkey" PRIMARY KEY ("id")
-);
-
--- CreateTable
 CREATE TABLE "UserRole" (
     "userId" TEXT NOT NULL,
     "roleId" TEXT NOT NULL,
@@ -145,9 +125,6 @@ CREATE UNIQUE INDEX "Tenant_code_key" ON "Tenant"("code");
 CREATE INDEX "User_tenantId_status_idx" ON "User"("tenantId", "status");
 
 -- CreateIndex
-CREATE INDEX "User_deptId_idx" ON "User"("deptId");
-
--- CreateIndex
 CREATE UNIQUE INDEX "User_tenantId_username_key" ON "User"("tenantId", "username");
 
 -- CreateIndex
@@ -163,12 +140,6 @@ CREATE INDEX "Menu_tenantId_parentId_idx" ON "Menu"("tenantId", "parentId");
 CREATE INDEX "Menu_tenantId_permission_idx" ON "Menu"("tenantId", "permission");
 
 -- CreateIndex
-CREATE INDEX "Department_tenantId_parentId_idx" ON "Department"("tenantId", "parentId");
-
--- CreateIndex
-CREATE UNIQUE INDEX "Department_tenantId_code_key" ON "Department"("tenantId", "code");
-
--- CreateIndex
 CREATE INDEX "AuditLog_tenantId_createdAt_idx" ON "AuditLog"("tenantId", "createdAt");
 
 -- CreateIndex
@@ -181,9 +152,6 @@ CREATE INDEX "AuditLog_module_idx" ON "AuditLog"("module");
 ALTER TABLE "User" ADD CONSTRAINT "User_tenantId_fkey" FOREIGN KEY ("tenantId") REFERENCES "Tenant"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "User" ADD CONSTRAINT "User_deptId_fkey" FOREIGN KEY ("deptId") REFERENCES "Department"("id") ON DELETE SET NULL ON UPDATE CASCADE;
-
--- AddForeignKey
 ALTER TABLE "Role" ADD CONSTRAINT "Role_tenantId_fkey" FOREIGN KEY ("tenantId") REFERENCES "Tenant"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
@@ -191,12 +159,6 @@ ALTER TABLE "Menu" ADD CONSTRAINT "Menu_tenantId_fkey" FOREIGN KEY ("tenantId") 
 
 -- AddForeignKey
 ALTER TABLE "Menu" ADD CONSTRAINT "Menu_parentId_fkey" FOREIGN KEY ("parentId") REFERENCES "Menu"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
-
--- AddForeignKey
-ALTER TABLE "Department" ADD CONSTRAINT "Department_tenantId_fkey" FOREIGN KEY ("tenantId") REFERENCES "Tenant"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
-
--- AddForeignKey
-ALTER TABLE "Department" ADD CONSTRAINT "Department_parentId_fkey" FOREIGN KEY ("parentId") REFERENCES "Department"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE "UserRole" ADD CONSTRAINT "UserRole_userId_fkey" FOREIGN KEY ("userId") REFERENCES "User"("id") ON DELETE CASCADE ON UPDATE CASCADE;

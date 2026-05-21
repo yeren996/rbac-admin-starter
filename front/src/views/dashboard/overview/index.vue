@@ -11,7 +11,6 @@ import { getDashboardOverviewApi } from '#/api';
 
 const loading = ref(false);
 const stats = ref({
-  departmentCount: 0,
   menuCount: 0,
   roleCount: 0,
   userCount: 0,
@@ -35,30 +34,23 @@ onMounted(load);
 <template>
   <Page
     content-class="rbac-page-content"
-    description="系统用户、角色、菜单和部门总览"
+    description="系统用户、角色和菜单总览"
     title="Dashboard"
   >
     <Row :gutter="[16, 16]">
-      <Col :lg="6" :sm="12" :xs="24">
+      <Col :lg="8" :sm="12" :xs="24">
         <Card :loading="loading" title="用户数">
           <div class="text-3xl font-semibold">{{ stats.userCount }}</div>
         </Card>
       </Col>
-      <Col :lg="6" :sm="12" :xs="24">
+      <Col :lg="8" :sm="12" :xs="24">
         <Card :loading="loading" title="角色数">
           <div class="text-3xl font-semibold">{{ stats.roleCount }}</div>
         </Card>
       </Col>
-      <Col :lg="6" :sm="12" :xs="24">
+      <Col :lg="8" :sm="12" :xs="24">
         <Card :loading="loading" title="菜单数">
           <div class="text-3xl font-semibold">{{ stats.menuCount }}</div>
-        </Card>
-      </Col>
-      <Col :lg="6" :sm="12" :xs="24">
-        <Card :loading="loading" title="部门数">
-          <div class="text-3xl font-semibold">
-            {{ stats.departmentCount }}
-          </div>
         </Card>
       </Col>
     </Row>

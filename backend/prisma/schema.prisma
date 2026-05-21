@@ -28,7 +28,6 @@ model Tenant {
   users       User[]
   roles       Role[]
   menus       Menu[]
-  departments Department[]
   auditLogs   AuditLog[]
 }
 
@@ -43,19 +42,16 @@ model User {
   avatar       String?
   status       Status     @default(ENABLED)
   isSuperAdmin Boolean    @default(false)
-  deptId       String?
   lastLoginAt  DateTime?
   createdAt    DateTime   @default(now())
   updatedAt    DateTime   @updatedAt
   deletedAt    DateTime?
 
   tenant    Tenant      @relation(fields: [tenantId], references: [id], onDelete: Restrict)
-  dept      Department? @relation(fields: [deptId], references: [id], onDelete: SetNull)
   userRoles UserRole[]
 
   @@unique([tenantId, username])
   @@index([tenantId, status])
-  @@index([deptId])
 }
 
 model Role {
@@ -109,29 +105,6 @@ model Menu {
   @@index([tenantId, permission])
 }
 
-model Department {
-  id        String    @id @default(cuid())
-  tenantId  String
-  parentId  String?
-  name      String
-  code      String
-  sort      Int       @default(0)
-  leader    String?
-  phone     String?
-  email     String?
-  status    Status    @default(ENABLED)
-  createdAt DateTime  @default(now())
-  updatedAt DateTime  @updatedAt
-  deletedAt DateTime?
-
-  tenant   Tenant       @relation(fields: [tenantId], references: [id], onDelete: Restrict)
-  parent   Department?  @relation("DepartmentTree", fields: [parentId], references: [id], onDelete: Restrict)
-  children Department[] @relation("DepartmentTree")
-  users    User[]
-
-  @@unique([tenantId, code])
-  @@index([tenantId, parentId])
-}
 
 model UserRole {
   userId    String

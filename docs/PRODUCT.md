@@ -2,7 +2,7 @@
 
 ## 1. 产品定位
 
-**RBAC Admin Starter** 是一个面向中后台系统的通用权限管理底座，基于 **NestJS + Prisma + PostgreSQL + Vue 3 + Vben Admin web-antd** 构建。它提供登录认证、动态菜单、按钮权限、后端接口权限、用户/角色/菜单/部门管理、审计日志、顶部栏通知、偏好设置和中英文切换等基础能力。
+**RBAC Admin Starter** 是一个面向中后台系统的通用权限管理底座，基于 **NestJS + Prisma + PostgreSQL + Vue 3 + Vben Admin web-antd** 构建。它提供登录认证、动态菜单、按钮权限、后端接口权限、用户/角色/菜单管理、审计日志、顶部栏通知、偏好设置和中英文切换等基础能力。
 
 适用场景：
 

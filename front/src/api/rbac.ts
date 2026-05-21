@@ -33,7 +33,6 @@ export interface UserRow {
   email?: string;
   phone?: string;
   status: 'DISABLED' | 'ENABLED';
-  deptId?: string;
   isSuperAdmin: boolean;
   userRoles?: { role: RoleRow }[];
 }
@@ -54,19 +53,6 @@ export interface MenuRow {
   keepAlive: boolean;
   status: 'DISABLED' | 'ENABLED';
   children?: MenuRow[];
-}
-
-export interface DepartmentRow {
-  id: string;
-  parentId?: null | string;
-  name: string;
-  code: string;
-  sort: number;
-  leader?: string;
-  phone?: string;
-  email?: string;
-  status: 'DISABLED' | 'ENABLED';
-  children?: DepartmentRow[];
 }
 
 export interface AuditLogRow {
@@ -97,7 +83,6 @@ export interface NotificationRow {
 
 export function getDashboardOverviewApi() {
   return requestClient.get<{
-    departmentCount: number;
     menuCount: number;
     recentLogs: AuditLogRow[];
     roleCount: number;
@@ -181,28 +166,6 @@ export function updateMenuStatusApi(id: string, status: string) {
     data: { status },
     method: 'PATCH',
   });
-}
-
-export function getDepartmentsApi() {
-  return requestClient.get<DepartmentRow[]>('/system/departments/tree');
-}
-export function createDepartmentApi(data: Record<string, any>) {
-  return requestClient.post<DepartmentRow>('/system/departments', data);
-}
-export function updateDepartmentApi(id: string, data: Record<string, any>) {
-  return requestClient.request<DepartmentRow>(`/system/departments/${id}`, {
-    data,
-    method: 'PATCH',
-  });
-}
-export function deleteDepartmentApi(id: string) {
-  return requestClient.delete(`/system/departments/${id}`);
-}
-export function updateDepartmentStatusApi(id: string, status: string) {
-  return requestClient.request<DepartmentRow>(
-    `/system/departments/${id}/status`,
-    { data: { status }, method: 'PATCH' },
-  );
 }
 
 export function getAuditLogsApi(params?: Record<string, any>) {

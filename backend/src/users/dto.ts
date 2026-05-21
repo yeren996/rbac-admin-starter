@@ -9,10 +9,6 @@ import {
 export class CreateUserDto {
   @IsOptional()
   @IsString()
-  deptId?: string;
-
-  @IsOptional()
-  @IsString()
   email?: string;
 
   @IsString()
@@ -38,10 +34,6 @@ export class UpdateUserDto {
   @IsOptional()
   @IsString()
   avatar?: string;
-
-  @IsOptional()
-  @IsString()
-  deptId?: string;
 
   @IsOptional()
   @IsString()

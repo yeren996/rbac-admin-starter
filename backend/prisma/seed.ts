@@ -90,7 +90,7 @@ const menus: MenuSeed[] = [
             title: '分配角色',
             type: 'BUTTON',
             permission: 'system:user:assign-role',
-            sort: 5,
+            sort: 4,
           },
         ],
       },
@@ -156,36 +156,6 @@ const menus: MenuSeed[] = [
             title: '删除菜单',
             type: 'BUTTON',
             permission: 'system:menu:delete',
-            sort: 3,
-          },
-        ],
-      },
-      {
-        title: '部门管理',
-        type: 'MENU',
-        name: 'SystemDepartment',
-        path: '/system/department',
-        component: '/system/department/index',
-        icon: 'carbon:tree-view-alt',
-        permission: 'system:department:list',
-        sort: 4,
-        children: [
-          {
-            title: '新增部门',
-            type: 'BUTTON',
-            permission: 'system:department:create',
-            sort: 1,
-          },
-          {
-            title: '编辑部门',
-            type: 'BUTTON',
-            permission: 'system:department:update',
-            sort: 2,
-          },
-          {
-            title: '删除部门',
-            type: 'BUTTON',
-            permission: 'system:department:delete',
             sort: 3,
           },
         ],
@@ -302,39 +272,7 @@ async function main() {
     prisma.user.deleteMany({ where: { tenantId: tenant.id } }),
     prisma.role.deleteMany({ where: { tenantId: tenant.id } }),
     prisma.menu.deleteMany({ where: { tenantId: tenant.id } }),
-    prisma.department.deleteMany({ where: { tenantId: tenant.id } }),
   ]);
-
-  const company = await prisma.department.create({
-    data: { code: 'company', name: '总公司', sort: 1, tenantId: tenant.id },
-  });
-  const rd = await prisma.department.create({
-    data: {
-      code: 'rd',
-      name: '研发部',
-      parentId: company.id,
-      sort: 1,
-      tenantId: tenant.id,
-    },
-  });
-  await prisma.department.createMany({
-    data: [
-      {
-        code: 'product',
-        name: '产品部',
-        parentId: company.id,
-        sort: 2,
-        tenantId: tenant.id,
-      },
-      {
-        code: 'ops',
-        name: '运营部',
-        parentId: company.id,
-        sort: 3,
-        tenantId: tenant.id,
-      },
-    ],
-  });
 
   const allMenuIds = await createMenuTree(tenant.id, menus);
   /**
@@ -405,7 +343,6 @@ async function main() {
   const [adminUser, demoUser] = await Promise.all([
     prisma.user.create({
       data: {
-        deptId: rd.id,
         isSuperAdmin: true,
         nickname: '超级管理员',
         passwordHash: await bcrypt.hash('Admin@123456', 10),
@@ -415,7 +352,6 @@ async function main() {
     }),
     prisma.user.create({
       data: {
-        deptId: rd.id,
         isSuperAdmin: false,
         nickname: '演示用户',
         passwordHash: await bcrypt.hash('Demo@123456', 10),

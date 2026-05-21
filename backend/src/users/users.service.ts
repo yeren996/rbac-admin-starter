@@ -24,8 +24,6 @@ const userSelect = {
   avatar: true,
   createdAt: true,
   deletedAt: true,
-  dept: { select: { id: true, name: true } },
-  deptId: true,
   email: true,
   id: true,
   isSuperAdmin: true,
@@ -102,7 +100,6 @@ export class UsersService {
     const user = await this.prisma.$transaction(async (tx) => {
       const created = await tx.user.create({
         data: {
-          deptId: dto.deptId || undefined,
           email: dto.email,
           nickname: dto.nickname,
           passwordHash,
@@ -165,7 +162,6 @@ export class UsersService {
       ...(query.status
         ? { status: query.status as 'DISABLED' | 'ENABLED' }
         : {}),
-      ...(query.deptId ? { deptId: query.deptId } : {}),
     };
     const [items, total] = await Promise.all([
       this.prisma.user.findMany({
@@ -226,7 +222,7 @@ export class UsersService {
   async update(id: string, dto: UpdateUserDto, actor: CurrentUserPayload) {
     await this.findOne(id, actor);
     const user = await this.prisma.user.update({
-      data: { ...dto, deptId: dto.deptId || undefined },
+      data: dto,
       select: userSelect,
       where: { id },
     });
