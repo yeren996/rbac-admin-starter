@@ -12,7 +12,8 @@
     "build:analyze": "pnpm vite build --mode analyze",
     "dev": "pnpm vite --mode development",
     "preview": "vite preview",
-    "typecheck": "vue-tsc --noEmit --skipLibCheck"
+    "typecheck": "vue-tsc --noEmit --skipLibCheck",
+    "build:demo": "pnpm vite build --mode demo"
   },
   "imports": {
     "#/*": "./src/*"

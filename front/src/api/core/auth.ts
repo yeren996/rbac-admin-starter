@@ -1,5 +1,11 @@
 import { useAccessStore } from '@vben/stores';
 
+import {
+  demoLogin,
+  demoLogout,
+  demoRefreshToken,
+  isDemoMode,
+} from '#/api/demo';
 import { baseRequestClient, requestClient } from '#/api/request';
 
 import { getAuthSessionApi } from './session';
@@ -30,10 +36,12 @@ export namespace AuthApi {
 }
 
 export async function loginApi(data: AuthApi.LoginParams) {
+  if (isDemoMode) return demoLogin(data);
   return requestClient.post<AuthApi.LoginResult>('/auth/login', data);
 }
 
 export async function refreshTokenApi() {
+  if (isDemoMode) return demoRefreshToken();
   const accessStore = useAccessStore();
   const response = await baseRequestClient.post<any>('/auth/refresh', {
     refreshToken: accessStore.refreshToken,
@@ -42,6 +50,7 @@ export async function refreshTokenApi() {
 }
 
 export async function logoutApi() {
+  if (isDemoMode) return demoLogout();
   return requestClient.post('/auth/logout');
 }
 

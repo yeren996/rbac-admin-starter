@@ -7,6 +7,20 @@
 - [产品说明](./docs/PRODUCT.md)
 - [使用手册](./docs/USER_MANUAL.md)
 
+## 在线演示
+
+当前 `feature/no-department-module` 分支内置 GitHub Pages 静态演示模式：
+
+- 演示地址：<https://yeren996.github.io/rbac-admin-starter/>
+- 演示账号：`admin / Admin@123456` 或 `demo / Demo@123456`
+- 说明：GitHub Pages 只托管静态前端，演示环境使用浏览器内 mock 数据，不连接真实 NestJS/PostgreSQL 后端。
+
+本地构建静态演示：
+
+```bash
+pnpm run build:demo
+```
+
 ## 技术栈
 
 | 分层 | 技术 |

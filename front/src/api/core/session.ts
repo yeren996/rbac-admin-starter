@@ -1,5 +1,6 @@
 import type { RouteRecordStringComponent } from '@vben/types';
 
+import { demoAuthSession, isDemoMode } from '#/api/demo';
 import { requestClient } from '#/api/request';
 
 interface AuthSessionResult {
@@ -22,6 +23,7 @@ let authSessionPromise: null | Promise<AuthSessionResult> = null;
  * 复用 /auth/me 的聚合响应，避免登录或刷新时并发重复请求 /auth/me、/auth/codes、/auth/menus。
  */
 export function getAuthSessionApi() {
+  if (isDemoMode) return demoAuthSession();
   authSessionPromise ??= requestClient
     .get<AuthSessionResult>('/auth/me')
     .catch((error) => {

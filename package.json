@@ -52,7 +52,8 @@
     "build:backend": "pnpm -F @rbac/api build",
     "dev:front": "pnpm -F @vben/web-antd run dev",
     "dev:backend": "pnpm -F @rbac/api start:dev",
-    "check:backend": "pnpm -F @rbac/api lint && pnpm -F @rbac/api test"
+    "check:backend": "pnpm -F @rbac/api lint && pnpm -F @rbac/api test",
+    "build:demo": "pnpm -F @vben/web-antd run build:demo"
   },
   "devDependencies": {
     "@changesets/changelog-github": "catalog:",
