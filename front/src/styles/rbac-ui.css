@@ -1,0 +1,118 @@
+:root {
+  --rbac-page-gap: 12px;
+  --rbac-card-gap: 12px;
+  --rbac-section-gap: 12px;
+}
+
+.rbac-page-shell,
+.rbac-page-content,
+.rbac-stack {
+  display: flex;
+  flex-direction: column;
+  gap: var(--rbac-card-gap);
+}
+
+.rbac-page-shell,
+.rbac-page-content {
+  padding: var(--rbac-page-gap);
+}
+
+.rbac-section-toolbar {
+  margin-bottom: var(--rbac-section-gap);
+}
+
+.rbac-table-card {
+  min-width: 0;
+}
+
+.rbac-table-card .ant-card-body {
+  min-width: 0;
+  overflow-x: auto;
+}
+
+.rbac-table-card .ant-table-wrapper {
+  min-width: 0;
+}
+
+.rbac-table-card .ant-table-cell {
+  white-space: nowrap;
+}
+
+.rbac-table-card .ant-table-pagination.ant-pagination {
+  margin-bottom: 0;
+}
+
+.rbac-responsive-form.ant-form-inline {
+  row-gap: var(--rbac-section-gap);
+}
+
+.rbac-analysis-card-grid,
+.rbac-workspace-grid {
+  display: grid;
+  gap: var(--rbac-card-gap);
+  width: 100%;
+}
+
+@media (max-width: 767px) {
+  .rbac-responsive-form.ant-form-inline {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .rbac-responsive-form.ant-form-inline .ant-form-item {
+    width: 100%;
+    margin-right: 0;
+  }
+
+  .rbac-responsive-form .ant-form-item-row,
+  .rbac-responsive-form .ant-form-item-control,
+  .rbac-responsive-form .ant-input-affix-wrapper,
+  .rbac-responsive-form .ant-picker,
+  .rbac-responsive-form .ant-select,
+  .rbac-responsive-form .ant-tree-select,
+  .rbac-responsive-form input.ant-input {
+    width: 100% !important;
+  }
+
+  .rbac-responsive-form > .ant-space {
+    width: 100%;
+  }
+
+  .rbac-responsive-form > .ant-space > .ant-space-item {
+    flex: 1 1 120px;
+  }
+
+  .rbac-responsive-form > .ant-space .ant-btn {
+    width: 100%;
+  }
+
+  .rbac-table-card .ant-card-body {
+    padding: 12px;
+  }
+
+  .rbac-table-card .ant-table-cell {
+    padding: 8px 12px !important;
+  }
+
+  .rbac-table-card .ant-table-pagination.ant-pagination {
+    row-gap: 8px;
+  }
+}
+
+@media (min-width: 768px) {
+  :root {
+    --rbac-page-gap: 16px;
+    --rbac-card-gap: 16px;
+    --rbac-section-gap: 16px;
+  }
+
+  .rbac-analysis-card-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 1024px) {
+  .rbac-workspace-grid {
+    grid-template-columns: minmax(0, 3fr) minmax(0, 2fr);
+  }
+}

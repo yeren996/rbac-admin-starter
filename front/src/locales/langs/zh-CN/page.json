@@ -1,0 +1,43 @@
+{
+  "auth": {
+    "login": "登录",
+    "register": "注册",
+    "codeLogin": "验证码登录",
+    "qrcodeLogin": "二维码登录",
+    "forgetPassword": "忘记密码",
+    "profile": "个人中心"
+  },
+  "dashboard": {
+    "title": "概览",
+    "analytics": "分析页",
+    "workspace": "工作台"
+  },
+  "notification": {
+    "action": "操作",
+    "clear": "清空通知",
+    "clearConfirm": "确认清空当前用户全部通知？该操作只影响当前登录用户的通知状态。",
+    "clearSuccess": "已清空全部通知",
+    "content": "内容",
+    "delete": "删除",
+    "deleteConfirm": "确认删除通知「{title}」？",
+    "deleteSuccess": "删除成功",
+    "detail": "详情",
+    "detailTitle": "通知详情",
+    "extra": "扩展信息",
+    "keyword": "关键字",
+    "keywordPlaceholder": "标题或内容",
+    "markAllRead": "全部已读",
+    "markRead": "已读",
+    "markReadSuccess": "已标记为已读",
+    "read": "已读",
+    "source": "来源",
+    "sourceAudit": "审计",
+    "sourceSecurity": "安全",
+    "sourceSystem": "系统",
+    "status": "状态",
+    "time": "时间",
+    "managementTitle": "通知管理",
+    "title": "通知列表",
+    "unread": "未读"
+  }
+}

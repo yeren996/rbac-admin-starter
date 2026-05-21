@@ -1,0 +1,43 @@
+{
+  "auth": {
+    "login": "Login",
+    "register": "Register",
+    "codeLogin": "Code Login",
+    "qrcodeLogin": "Qr Code Login",
+    "forgetPassword": "Forget Password",
+    "profile": "Profile"
+  },
+  "dashboard": {
+    "title": "Dashboard",
+    "analytics": "Analytics",
+    "workspace": "Workspace"
+  },
+  "notification": {
+    "action": "Action",
+    "clear": "Clear notifications",
+    "clearConfirm": "Are you sure you want to clear all notifications for the current user?",
+    "clearSuccess": "All notifications have been cleared",
+    "content": "Content",
+    "delete": "Delete",
+    "deleteConfirm": "Delete notification \"{title}\"?",
+    "deleteSuccess": "Deleted successfully",
+    "detail": "Detail",
+    "detailTitle": "Notification detail",
+    "extra": "Extra information",
+    "keyword": "Keyword",
+    "keywordPlaceholder": "Title or content",
+    "markAllRead": "Mark all as read",
+    "markRead": "Read",
+    "markReadSuccess": "Marked as read",
+    "read": "Read",
+    "source": "Source",
+    "sourceAudit": "Audit",
+    "sourceSecurity": "Security",
+    "sourceSystem": "System",
+    "status": "Status",
+    "time": "Time",
+    "managementTitle": "Notification Management",
+    "title": "Notifications",
+    "unread": "Unread"
+  }
+}

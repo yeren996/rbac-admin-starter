@@ -1,0 +1,46 @@
+{
+  "name": "@rbac/api",
+  "version": "0.1.0",
+  "private": true,
+  "type": "commonjs",
+  "scripts": {
+    "build": "tsc -p tsconfig.build.json",
+    "lint": "tsc -p tsconfig.json --noEmit --pretty false",
+    "typecheck": "tsc -p tsconfig.json --noEmit --pretty false",
+    "start": "node dist/main.js",
+    "start:dev": "ts-node --project tsconfig.json src/main.ts",
+    "test": "vitest run",
+    "prisma:generate": "prisma generate --schema prisma/schema.prisma",
+    "prisma:migrate": "prisma migrate dev --name init --schema prisma/schema.prisma",
+    "prisma:seed": "tsx prisma/seed.ts"
+  },
+  "dependencies": {
+    "@nestjs/common": "catalog:",
+    "@nestjs/core": "catalog:",
+    "@nestjs/jwt": "catalog:",
+    "@nestjs/passport": "catalog:",
+    "@nestjs/platform-express": "catalog:",
+    "@nestjs/swagger": "catalog:",
+    "@prisma/client": "catalog:",
+    "bcrypt": "catalog:",
+    "class-transformer": "catalog:",
+    "class-validator": "catalog:",
+    "dotenv": "catalog:",
+    "passport": "catalog:",
+    "passport-jwt": "catalog:",
+    "reflect-metadata": "catalog:",
+    "rxjs": "catalog:"
+  },
+  "devDependencies": {
+    "@types/bcrypt": "catalog:",
+    "@types/express": "catalog:",
+    "@types/passport-jwt": "catalog:",
+    "prisma": "catalog:",
+    "ts-node": "catalog:",
+    "tsx": "catalog:",
+    "vitest": "catalog:"
+  },
+  "prisma": {
+    "seed": "tsx prisma/seed.ts"
+  }
+}

@@ -1,0 +1,50 @@
+{
+  "tailwindCSS.experimental.configFile": "workspace/internal/tailwind-config/src/theme.css",
+  "tailwindCSS.lint.suggestCanonicalClasses": "ignore",
+  "tailwindCSS.experimental.classRegex": [
+    ["cva\\(([^)]*)\\)", "[\"'`]([^\"'`]*).*?[\"'`]"]
+  ],
+
+  "npm.packageManager": "pnpm",
+
+  "oxc.enable": true,
+  "oxc.configPath": "oxlint.config.ts",
+  "oxc.fmt.configPath": "oxfmt.config.ts",
+  "eslint.useFlatConfig": true,
+  "eslint.validate": [
+    "javascript",
+    "typescript",
+    "javascriptreact",
+    "typescriptreact",
+    "vue",
+    "html",
+    "markdown",
+    "json",
+    "jsonc",
+    "json5",
+    "yaml"
+  ],
+
+  "stylelint.enable": true,
+  "stylelint.packageManager": "pnpm",
+  "stylelint.validate": ["css", "less", "postcss", "scss", "vue"],
+  "stylelint.customSyntax": "postcss-html",
+
+  "cssVariables.lookupFiles": [
+    "workspace/packages/@core/base/design/src/**/*.css"
+  ],
+
+  "i18n-ally.localesPaths": [
+    "workspace/packages/locales/src/langs",
+    "front/src/locales/langs"
+  ],
+  "i18n-ally.pathMatcher": "{locale}/{namespace}.{ext}",
+  "i18n-ally.enabledParsers": ["json"],
+  "i18n-ally.sourceLanguage": "en",
+  "i18n-ally.displayLanguage": "zh-CN",
+  "i18n-ally.enabledFrameworks": ["vue"],
+  "i18n-ally.keystyle": "nested",
+  "i18n-ally.namespace": true,
+
+  "vue.server.hybridMode": true
+}
